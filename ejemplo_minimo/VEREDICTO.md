@@ -2,7 +2,7 @@
 
 **INCOMPLETO (falta réplica: serie y réplica no coinciden en P2)**
 
-**Preregistro:** `PREREGISTRO.md` (sha16 0e1f2059aaf73a92), commit a557d95 2026-10-13.
+**Preregistro:** `PREREGISTRO.md` (sha16 69b045281821bfc5), commit 9f468be 2026-10-13.
 **Resultados:** `datos/serie_101-120.json` (sha16 59670df68854a439), `datos/replica_121-140.json` (sha16 8559bcd6de4d4659).
 
 ## Errores registrados en este bloque
