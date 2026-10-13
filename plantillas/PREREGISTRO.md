@@ -48,5 +48,14 @@
 ## 13. Costo y quién corre qué
 <!-- Runner, humo (--humo, un proceso), tiempo medido de una corrida, quién lanza la corrida larga (el coordinador). -->
 
+## Parámetros sellados
+<!-- Regla 14. Todo valor que decide el veredicto: umbrales, márgenes, semillas de serie y réplica, N, perillas, cómo
+se construye cada control. Literales de Python; range(a, b) para rangos. Los mismos nombres van en PREREGISTRADO del
+runner, apuntando a las variables que usa; herramientas/coteja_preregistro.py compara y aborta si algo difiere.
+Una enmienda que cambie un valor añade al final una tabla nueva y COMPLETA, con su ERR escrito antes. -->
+
+| nombre | valor | de dónde sale |
+|---|---|---|
+
 ## Enmiendas
 <!-- Vacío al commitear. Cada enmienda: fecha y hora, ERR-N, antes/después de qué serie, qué cambia y qué NO se rejuzga. -->

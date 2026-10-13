@@ -16,13 +16,13 @@ controles y el criterio de refutación están en `PREREGISTRO.md`, escrito y com
 
 | archivo | papel en el protocolo | regla |
 |---|---|---|
-| `PREREGISTRO.md` | pregunta, predicción numérica, placebo, refutación; sellado | 4, 13 |
+| `PREREGISTRO.md` | pregunta, predicción numérica, placebo, refutación, tabla `## Parámetros sellados`; sellado | 4, 13, 14 |
 | `config.toml` | sellos de los congelados y fuente del ERR-001 para el registro | 1 |
 | `referencia.py` | referencia congelada: no se edita | 1 |
 | `construye_candidato.py` → `candidato.py` | construcción por anclas; el generado no se edita a mano | 2 |
 | `arnes_identidad.py` | identidad bit a bit con la perilla apagada y un control que debe fallar | 2 |
 | `bateria_referencia.py`, `bateria_copiada.py` | argumentos exactos de cada brazo | 12 |
-| `corre.py` | el runner: sellos → anclas → identidad → campo a campo → humo → serie → réplica → veredicto | 3, 10, 12, 13 |
+| `corre.py` | el runner: sellos y cotejo → anclas → identidad → campo a campo → humo → serie → réplica → veredicto | 3, 10, 12, 13, 14 |
 | `datos/*.json` | resultados de precisión completa; el veredicto se calcula releyéndolos | 8 |
 | `VEREDICTO.md` | lo escribe `corre.py` con la plantilla de `plantillas/VEREDICTO.md` | — |
 | `registro/errores.csv` | lo escribe `herramientas/construye_errores.py` con este `config.toml` | — |
@@ -44,4 +44,6 @@ corrección (argumentos de la referencia + perillas), y deja el error numerado c
 - La auditoría por un agente: aquí el defecto lo atrapa un control automático. Para medir cuánto atrapa un auditor
   hacen falta `agentes/metodo-sembrador.md` y `agentes/metodo-auditor-ciego.md`.
 - Las corridas largas en varios procesos: todo corre en uno.
-- Enmiendas: el preregistro no tiene ninguna.
+- Enmiendas que cambian algo: el preregistro tiene una sola (13-oct-2026), que añade la tabla `## Parámetros
+  sellados` sin cambiar ningún valor; por eso no lleva ERR (regla 9). `corre.py` la coteja con su `PREREGISTRADO`
+  en el paso 1 (regla 14) y aborta si un umbral, una semilla o una perilla no coincide.

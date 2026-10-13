@@ -4,7 +4,9 @@
   python ejemplo_minimo/corre.py --humo    sólo hasta el humo (pasos 1 a 5)
 
 Pasos (cada uno aborta si falla, salvo el 4, que trae un defecto SEMBRADO a propósito y muestra cómo se atrapa):
-  1. Sellos: la referencia y el preregistro son los congelados (herramientas/guardia.py --check).
+  1. Sellos: la referencia y el preregistro son los congelados (herramientas/guardia.py --check). Cotejo: cada valor
+     de la tabla "## Parámetros sellados" del PREREGISTRO es el que usa este runner (PREREGISTRADO, abajo), con
+     herramientas/coteja_preregistro.py; si algo difiere, no se corre nada (en --humo sólo avisa).
   2. Anclas: candidato.py es exactamente lo que construye construye_candidato.py (nadie lo editó a mano).
   3. Identidad: arnes_identidad.py, con la perilla apagada el candidato es bit a bit la referencia.
   4. Entrada campo a campo de la batería copiada contra la de la referencia. Aquí salta ERR-001 (argumento omitido);
@@ -28,18 +30,33 @@ import time
 AQUI = os.path.dirname(os.path.abspath(__file__))
 RAIZ = os.path.dirname(AQUI)
 sys.path.insert(0, AQUI)
+sys.path.insert(1, os.path.join(RAIZ, 'herramientas'))
 
 import arnes_identidad  # noqa: E402
 import bateria_copiada  # noqa: E402
 import bateria_referencia  # noqa: E402
 import candidato  # noqa: E402
 import construye_candidato  # noqa: E402
+import coteja_preregistro  # noqa: E402
 import referencia  # noqa: E402
 
 SERIE, REPLICA, HUMO, CONTRAFACTUAL = range(101, 121), range(121, 141), [99], range(901, 921)
 FECHA_ERR = '2026-10-13'
 LINEA_ERR = 9   # línea de VEREDICTO.md donde se define ERR-001; debe coincidir con [fuentes] de config.toml
 UMBRAL_PAREADO, MARGEN_P1, COTA_P3, HUECO = 15, 0.02, -0.01, (0.30, 0.78)
+DESPLAZA_PLACEBO = 10000   # PLACEBO = la referencia con la semilla + 10000 (otro ruido)
+
+# Lo que este runner usa de verdad, con los nombres de "## Parámetros sellados" del PREREGISTRO. Son las variables
+# vivas, no números copiados: si alguien cambia un umbral aquí o una perilla en la batería, el cotejo del paso 1 lo ve.
+PREREGISTRADO = dict(
+    SERIE=SERIE, REPLICA=REPLICA, HUMO=HUMO, CONTRAFACTUAL=CONTRAFACTUAL,
+    UMBRAL_PAREADO=UMBRAL_PAREADO, MARGEN_P1=MARGEN_P1, COTA_P3=COTA_P3, HUECO=HUECO,
+    DESPLAZA_PLACEBO=DESPLAZA_PLACEBO,
+    k=bateria_copiada.PERILLAS['k'], beta=bateria_copiada.PERILLAS['beta'],
+    pasos=bateria_referencia.KWARGS_REFERENCIA['pasos'], eps=bateria_referencia.KWARGS_REFERENCIA['eps'],
+    alpha=bateria_referencia.KWARGS_REFERENCIA['alpha'], medias=bateria_referencia.KWARGS_REFERENCIA['medias'],
+    sigma=bateria_referencia.KWARGS_REFERENCIA['sigma'],
+)
 
 
 def sha16(ruta):
@@ -70,7 +87,7 @@ def corre_semilla(s, kw_cand):
     ref = resume(bateria_referencia.corre(s))
     cand = resume(candidato.corre(s, **kw_cand))
     const = resume(bateria_referencia.corre(s, eps=cand['eps_medio']))   # control de cantidad
-    placebo = resume(bateria_referencia.corre(s + 10000))                # mismo sistema, otro ruido
+    placebo = resume(bateria_referencia.corre(s + DESPLAZA_PLACEBO))     # mismo sistema, otro ruido
     return dict(REF=ref, CAND=cand, CONST=const, PLACEBO=placebo)
 
 
@@ -183,6 +200,16 @@ def main():
                    '(el humo sí puede correr: --humo).')
         commit_prereg = 'SIN COMMIT'
     print('PREREGISTRO.md commiteado en: %s' % commit_prereg)
+    filas, difs = coteja_preregistro.coteja(os.path.join(AQUI, 'PREREGISTRO.md'), PREREGISTRADO)
+    coteja_preregistro.imprime(filas)
+    if difs:
+        texto = '%d diferencia(s) entre PREREGISTRO.md y este runner:\n  - %s' % (len(difs), '\n  - '.join(difs))
+        if not humo_solo:
+            aborta(texto + '\nRegla 4: lo que corre es lo preregistrado. Si el cambio es a propósito, va en una '
+                   'enmienda con su ERR (regla 9) y se vuelve a sellar.')
+        print('AVISO (--humo sigue): ' + texto)
+    else:
+        print('Cotejo preregistro <-> runner: %d/%d iguales' % (len(filas), len(filas)))
 
     paso(2, 'Construcción por anclas: candidato.py es el generado, byte a byte')
     generado = construye_candidato.construye()

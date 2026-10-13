@@ -9,7 +9,7 @@ anio_por_defecto = 2026
 
 [congelados]
 "referencia.py" = "e6155bea36a2799b"
-"PREREGISTRO.md" = "0e1f2059aaf73a92"
+"PREREGISTRO.md" = "69b045281821bfc5"   # enmienda 1 (13-oct-2026); antes 0e1f2059aaf73a92. Reselló un agente: lo ratifica una persona
 
 [registro]
 carpeta = "registro"

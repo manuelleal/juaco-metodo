@@ -222,6 +222,29 @@ veredicto (`ejemplo_minimo/corre.py`, puerta P0).
 
 **Cumplimiento.** `disciplina` en la letra; `código` en el runner que calcule el placebo.
 
+## 14. Lo que corre es lo preregistrado: cotejo automático antes de correr
+
+**Regla.** Todo preregistro lleva una sección `## Parámetros sellados` con una tabla `nombre | valor` (umbrales,
+márgenes, semillas o réplicas de la serie y de la réplica, N, valores de las perillas, cómo se construye cada control;
+literales de Python, `range(a, b)` para rangos). El runner declara `PREREGISTRADO = dict(...)` con los mismos nombres,
+apuntando a las variables que usa de verdad (no a números copiados otra vez), y antes de la corrida larga llama a
+`herramientas/coteja_preregistro.py`, que compara valor a valor, exige que cada nombre esté en los dos lados y aborta
+con la lista de diferencias. Un valor que cambie por enmienda va en una tabla nueva y completa, al final, con su ERR
+escrito antes de ella (regla 9); sin ERR, el cotejo aborta.
+
+**Por qué.** En la medición con errores sembrados (`MEDICION.md`), el auditor de sólo lectura atrapó 7 de 18 errores
+de criterio en la serie y 2 de 6 en la réplica: muchos eran un umbral, un rango de semillas o un control distinto entre
+el preregistro y el runner. Leer dos archivos y compararlos a ojo es justo lo que una máquina hace mejor.
+
+**Cómo se comprueba.** `python herramientas/coteja_preregistro.py PREREGISTRO.md corre_x.py` (sin ejecutar el runner;
+sale 1 si hay diferencias); el runner lo llama en proceso con los valores vivos (paso 1 de `ejemplo_minimo/corre.py`).
+`python herramientas/prueba_coteja.py` siembra nueve casos (umbral, perilla, fila borrada, enmienda sin ERR...) y
+comprueba que cada uno aborta o pasa como debe.
+
+**Cumplimiento.** `código` para lo que esté en la tabla y en `PREREGISTRADO`; `disciplina` el poner en la tabla todo lo
+que decide el veredicto y el apuntar `PREREGISTRADO` a las variables que de verdad se usan. Lo que sólo está en la prosa
+del preregistro (la forma de un criterio, "mediana > 0") no se coteja.
+
 ---
 
 ## Lo que no se lleva de JUACO

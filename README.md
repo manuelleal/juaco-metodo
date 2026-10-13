@@ -83,17 +83,19 @@ errores cuyo atrapador consta; una regla que sólo está escrita se puede incump
 | 11 | cada encargo empieza con el propósito y trae contrato | disciplina | `plantillas/ENCARGO.md`, skill `metodo-encargo` |
 | 12 | batería copiada: campo a campo, argumentos exactos, humo que escribe | **código** en el runner que lo copie | pasos 4 y 5 de `corre.py` |
 | 13 | todo criterio corre su placebo | disciplina en la letra; **código** en el runner que lo calcule | puerta P0 de `corre.py` |
+| 14 | lo que corre es lo preregistrado: tabla `## Parámetros sellados` ↔ `PREREGISTRADO` del runner, valor a valor | **código** para lo que esté en la tabla (aborta con la lista de diferencias; una tabla nueva sin ERR también aborta); disciplina el llenar la tabla y apuntar a las variables que se usan | `coteja_preregistro.py`, `prueba_coteja.py` (9 casos), paso 1 de `corre.py` |
 | registro | vocabulario cerrado, longitudes, `id_permanente` único | **código** | `construye_errores.py` aborta si algo no cumple el esquema |
 
 ## Qué hay
 
 ```
-PROTOCOLO.md            13 reglas, cada una con su porqué (un ERR de JUACO) y cómo se comprueba
+PROTOCOLO.md            14 reglas, cada una con su porqué (un ERR de JUACO o la medición) y cómo se comprueba
 ROLES.md                coordinador, creador, auditor, cronista, probador (y apoyo); qué puede y qué no cada uno
 plantillas/             PREREGISTRO, ENCARGO, VEREDICTO, ERR, ESTADO
 registro/               errores.csv (vacío), ESQUEMA_errores.md, generado/
 herramientas/           construye_errores.py, guardia.py + guardia.sh + ejemplo_settings.json,
-                        prueba_guardia.py (21 casos), arnes_identidad_ejemplo.py
+                        prueba_guardia.py (21 casos), arnes_identidad_ejemplo.py,
+                        coteja_preregistro.py + prueba_coteja.py (9 casos)
 agentes/, skills/       definiciones para Claude Code e INSTALAR.md
 ejemplo_minimo/         el experimento de juguete de punta a punta
 config.toml             rutas, congelados, guardia y fuentes del registro de errores

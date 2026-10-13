@@ -114,4 +114,36 @@ pasa. Nada de "detecta el cambio", "entiende" ni "se adapta" en general.
 4000 pasos, más 40 corridas del contrafactual. Es un ejemplo: lo corre quien lo instale.
 
 ## Enmiendas
-Ninguna.
+
+**Enmienda 1 · 13-oct-2026, 18:05 (UTC−5) · sin ERR · después de la serie 101–120 y de la réplica 121–140, ya
+corridas y publicadas en `VEREDICTO.md`.** *Qué cambia:* se añade abajo la sección `## Parámetros sellados`, que
+transcribe a una tabla, **sin cambiar ninguno**, valores que ya estaban escritos en §2, §3, §5, §7 y §9; la lee
+`herramientas/coteja_preregistro.py` para comprobar antes de correr que `corre.py` usa esos mismos valores. *Por qué
+no lleva ERR:* no cambia ningún umbral, banda, puerta ni forma de medida (regla 9); si el cotejo encontrara una
+diferencia, ésa sí sería un ERR. *Qué NO se rejuzga:* nada; serie y réplica se vuelven a correr con la misma letra y
+escriben los mismos bytes. *Sello:* el sha16 de este archivo cambia, así que su línea en `config.toml` se actualiza en
+el mismo commit; lo hizo un agente (el creador) por encargo del coordinador, y la regla 1 pide que lo ratifique una
+persona (`python herramientas/guardia.py --check --config ejemplo_minimo/config.toml`).
+
+## Parámetros sellados
+
+Añadida por la enmienda 1. Los nombres son los de `PREREGISTRADO` en `corre.py`; los valores, literales de Python.
+
+| nombre | valor | de dónde sale |
+|---|---|---|
+| SERIE | range(101, 121) | §5: serie 101–120 |
+| REPLICA | range(121, 141) | §5: réplica 121–140 |
+| HUMO | [99] | §5: humo, semilla 99 |
+| CONTRAFACTUAL | range(901, 921) | §5: contrafactual del defecto, 901–920 (no entra en el veredicto) |
+| UMBRAL_PAREADO | 15 | §7 P1 y P2: pareado ≥ 15/20 |
+| MARGEN_P1 | 0.02 | §7 P1: mediana ≥ +0.02 |
+| COTA_P3 | -0.01 | §7 P3: mediana ≥ −0.01 |
+| HUECO | (0.30, 0.78) | §9 G: mediana de Q3 REF en [0.30, 0.78] |
+| DESPLAZA_PLACEBO | 10000 | §5 PLACEBO: semilla + 10000 |
+| k | 0.3 | §2 perillas |
+| beta | 0.05 | §2 perillas |
+| pasos | 4000 | §3 y §5 |
+| eps | 0.01 | §3: argumentos exactos de la referencia |
+| alpha | 0.1 | §3 |
+| medias | (0.8, 0.2) | §3 y §5 |
+| sigma | 0.05 | §3 y §5 |

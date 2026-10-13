@@ -82,6 +82,7 @@ catcher is recorded; a rule that only exists in writing can be broken without an
 | 11 | every task starts with the purpose and carries a contract | discipline | `plantillas/ENCARGO.md`, skill `metodo-encargo` |
 | 12 | copied run configuration: field by field, exact arguments, smoke run that writes its output | **code** in the runner that copies it | steps 4–5 of `corre.py` |
 | 13 | every criterion runs its placebo | discipline in the text; **code** in the runner that computes it | gate P0 in `corre.py` |
+| 14 | what runs is what was preregistered: `## Parámetros sellados` table ↔ the runner's `PREREGISTRADO`, value by value | **code** for whatever is in the table (aborts with the list of differences; a new table without an ERR also aborts); filling the table and pointing at the variables actually used is discipline | `coteja_preregistro.py`, `prueba_coteja.py` (9 cases), step 1 of `corre.py` |
 | registry | closed vocabulary, lengths, unique `id_permanente` | **code** | `construye_errores.py` aborts if the schema is not met |
 
 ## What is missing
