@@ -14,7 +14,7 @@ Recibes una lista de carpetas `B<bloque>_c<n>/`. No sabes cuántas tienen defect
 Para cada copia aplica la lista de `agentes/metodo-auditor.md` (puntos 1 a 10), en ese orden, y decide:
 - `defecto`: si / no.
 - Si sí: tipo (criterio / instrumento / lectura / otro), archivo:línea, descripción en una frase, y qué dato lo confirma.
-- Confianza: alta / media / baja.
+- Confianza: alta / media / baja, con la regla de `dato_que_confirma` de abajo.
 - Argumento contrario (punto 9 del auditor): en una línea, el mejor motivo por el que podrías estar equivocado.
 
 Entrega UN solo archivo `HALLAZGOS.csv` con columnas exactas:
@@ -25,6 +25,7 @@ Una fila por copia. Si una copia tiene varios problemas, una fila por problema, 
 Además, una página de notas: qué fue difícil de revisar, qué no pudiste verificar sin lanzar la corrida, y cuánto tiempo te tomó por copia.
 
 Reglas:
+- **`dato_que_confirma` es obligatorio para confianza alta o media: debe ser un valor concreto de un archivo de la copia que contradiga a otro; "parece" o "no cuadra" es confianza baja; una posible errata del autor original es baja salvo que cambie el veredicto.** Escríbelo como `archivo:línea = valor` frente a `archivo:línea = valor` (o la clave del JSON). Sin eso, la fila va con `confianza=baja`, aunque estés seguro.
 - No declares defecto sin archivo:línea. Una sospecha sin ubicación es `confianza=baja` y se cuenta aparte.
 - No compares copias entre sí para deducir cuál es la original: cada copia se juzga sola.
 - No pidas más contexto al coordinador durante la auditoría.

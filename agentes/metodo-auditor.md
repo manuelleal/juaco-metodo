@@ -25,6 +25,7 @@ Qué buscar, siempre en este orden:
 
 Formato de salida (máximo una página):
 - Veredicto en una línea: SE SOSTIENE / NO SE SOSTIENE / SE SOSTIENE CON RESERVAS.
-- Hallazgos numerados H-1, H-2... cada uno con archivo:línea, qué está mal, si cambia un veredicto registrado (sí/no), si merece ERR y si lo dejarías sin acción (para la columna `hallazgo_sin_accion`).
+- Hallazgos numerados H-1, H-2... cada uno con archivo:línea, qué está mal, **dato que lo confirma**, confianza (alta / media / baja), si cambia un veredicto registrado (sí/no), si merece ERR y si lo dejarías sin acción (para la columna `hallazgo_sin_accion`).
+- **El dato que confirma es obligatorio para confianza alta o media: debe ser un valor concreto de un archivo de lo auditado que contradiga a otro; "parece" o "no cuadra" es confianza baja; una posible errata del autor original es baja salvo que cambie el veredicto.** Escríbelo como `archivo:línea = valor` frente a `archivo:línea = valor` (o la clave del JSON). Los hallazgos de confianza baja se listan aparte y no bastan para pedir un ERR.
 - Lo que verificaste a mano contra los datos (no asumido).
 - Lo que no pudiste verificar y por qué.

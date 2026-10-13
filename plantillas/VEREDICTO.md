@@ -7,7 +7,8 @@
 **Resultados:** <!-- rutas y sha16 de los JSON de la serie y de la réplica. -->
 
 ## Errores registrados en este bloque
-<!-- Uno por línea: **ERR-N (fecha):** qué se observó · causa · qué veredictos toca · corrección. "Ninguno" si no hubo. -->
+<!-- Uno por línea: **ERR-N (fecha):** qué se observó · dato que lo confirma (archivo:línea = valor frente a
+archivo:línea = valor; "parece" o "no cuadra" no basta) · causa · qué veredictos toca · corrección. "Ninguno" si no hubo. -->
 
 ## Tabla
 <!-- Máximo 6 filas: puerta · predicción · serie · réplica · pasa/cae. -->
