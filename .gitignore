@@ -1,0 +1,15 @@
+__pycache__/
+*.pyc
+*.pyo
+.DS_Store
+
+# Claude Code: la configuración local no se versiona (ver herramientas/ejemplo_settings.json)
+.claude/
+
+# Claves y secretos: nunca en el repositorio
+.env
+.env.*
+*.key
+*.pem
+*secret*
+*credenciales*

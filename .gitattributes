@@ -1,0 +1,3 @@
+# Los sellos (sha256) de la referencia congelada y del preregistro son parte del protocolo.
+# Prohibida toda conversión de fin de línea: rompe los sellos.
+* -text
