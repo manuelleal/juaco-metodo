@@ -424,8 +424,9 @@ def escribe_resumen(pj, filas, muestra, occ, clasif, sin_fuente):
 
 
 if __name__ == '__main__':
-    try:
-        sys.stdout.reconfigure(encoding='utf-8', errors='replace')
-    except Exception:
-        pass
+    for flujo in (sys.stdout, sys.stderr):   # en Windows la salida entubada no es UTF-8
+        try:
+            flujo.reconfigure(encoding='utf-8', errors='replace')
+        except Exception:
+            pass
     main()
