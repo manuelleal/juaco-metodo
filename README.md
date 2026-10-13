@@ -86,9 +86,19 @@ errores cuyo atrapador consta; una regla que sólo está escrita se puede incump
 | 14 | lo que corre es lo preregistrado: tabla `## Parámetros sellados` ↔ `PREREGISTRADO` del runner, valor a valor | **código** para lo que esté en la tabla (aborta con la lista de diferencias; una tabla nueva sin ERR también aborta); disciplina el llenar la tabla y apuntar a las variables que se usan | `coteja_preregistro.py`, `prueba_coteja.py` (9 casos), paso 1 de `corre.py` |
 | registro | vocabulario cerrado, longitudes, `id_permanente` único | **código** | `construye_errores.py` aborta si algo no cumple el esquema |
 
+## Qué tan bien funciona
+
+Medido una vez, en un proyecto, por agentes de la misma familia: en JUACO se sembraron defectos en 60 copias de
+bloques cerrados (y 20 más de réplica) y un auditor de sólo lectura las revisó a ciegas, con la clave sellada. Atrapó
+28 de 40 en la serie: 15/16 de instrumento, 6/6 de lectura, pero sólo 7/18 de criterio, y dio falsas alarmas en 6 de 20
+copias limpias (3 de 7 en la réplica). Por eso existen la regla 14 (cotejo preregistro ↔ runner en código) y el
+`dato_que_confirma` obligatorio de los auditores; ninguno de los dos cambios está medido todavía. Diseño, números de
+serie y réplica, y limitaciones: [`MEDICION.md`](MEDICION.md).
+
 ## Qué hay
 
 ```
+MEDICION.md             la medición del auditor con errores sembrados (serie y réplica)
 PROTOCOLO.md            14 reglas, cada una con su porqué (un ERR de JUACO o la medición) y cómo se comprueba
 ROLES.md                coordinador, creador, auditor, cronista, probador (y apoyo); qué puede y qué no cada uno
 plantillas/             PREREGISTRO, ENCARGO, VEREDICTO, ERR, ESTADO
@@ -103,9 +113,10 @@ config.toml             rutas, congelados, guardia y fuentes del registro de err
 
 ## Qué falta
 
-- **No se sabe cuánto atrapa el auditor.** El registro cuenta lo que alguien vio, no lo que se escapó. El
-  procedimiento para medirlo (sembrar defectos en copias, auditar a ciegas, contar detección y falsas alarmas) está en
-  `agentes/metodo-sembrador.md` y `agentes/metodo-auditor-ciego.md`, pero la medida todavía no se ha hecho.
+- **Cuánto atrapa el auditor se midió una sola vez** (`MEDICION.md`), en un proyecto y con agentes de la misma familia
+  sembrando y auditando. Falta repetirla con un auditor de otra familia y en otro proyecto, y medir si la regla 14 y el
+  `dato_que_confirma` obligatorio cambian algo. El procedimiento está en `agentes/metodo-sembrador.md`,
+  `agentes/metodo-auditor-ciego.md` y `herramientas/puntua.py`.
 - **Nadie audita al coordinador** salvo la persona responsable, y si todos los agentes son del mismo modelo la
   auditoría es circular. Ver `ROLES.md`.
 - La guardia sólo funciona dentro de Claude Code (es un hook) y sólo con los comandos que reconoce.

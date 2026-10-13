@@ -85,11 +85,21 @@ catcher is recorded; a rule that only exists in writing can be broken without an
 | 14 | what runs is what was preregistered: `## Parámetros sellados` table ↔ the runner's `PREREGISTRADO`, value by value | **code** for whatever is in the table (aborts with the list of differences; a new table without an ERR also aborts); filling the table and pointing at the variables actually used is discipline | `coteja_preregistro.py`, `prueba_coteja.py` (9 cases), step 1 of `corre.py` |
 | registry | closed vocabulary, lengths, unique `id_permanente` | **code** | `construye_errores.py` aborts if the schema is not met |
 
+## How well it works
+
+Measured once, in one project, by agents of the same family: in JUACO, defects were seeded into 60 copies of closed
+blocks (plus 20 for a replication) and a read-only auditor reviewed them blind, against a sealed key. It caught 28 of
+40 in the series: 15/16 instrument, 6/6 reading, but only 7/18 criterion errors, and raised false alarms on 6 of 20
+clean copies (3 of 7 in the replication). That is why rule 14 (preregistration ↔ runner check in code) and the
+mandatory `dato_que_confirma` for auditors exist; neither change has been measured yet. Design, series and replication
+numbers, and limitations: [`MEDICION.md`](MEDICION.md) (in Spanish).
+
 ## What is missing
 
-- **How much the auditor catches is unknown.** The registry counts what someone saw, not what escaped. The procedure
-  to measure it (seed defects in copies, audit blind, count detection and false alarms) is in
-  `agentes/metodo-sembrador.md` and `agentes/metodo-auditor-ciego.md`, but the measurement has not been done.
+- **How much the auditor catches has been measured only once** (`MEDICION.md`), in one project, with agents of the
+  same family seeding and auditing. It still has to be repeated with an auditor from another family and in another
+  project, and rule 14 and the mandatory `dato_que_confirma` have to be measured. The procedure is in
+  `agentes/metodo-sembrador.md`, `agentes/metodo-auditor-ciego.md` and `herramientas/puntua.py`.
 - **Nobody audits the coordinator** except the responsible person, and if all agents are the same model the audit is
   circular. See `ROLES.md`.
 - The guard only works inside Claude Code (it is a hook) and only for the commands it recognizes.
