@@ -95,7 +95,7 @@ plantillas/             PREREGISTRO, ENCARGO, VEREDICTO, ERR, ESTADO
 registro/               errores.csv (vacío), ESQUEMA_errores.md, generado/
 herramientas/           construye_errores.py, guardia.py + guardia.sh + ejemplo_settings.json,
                         prueba_guardia.py (21 casos), arnes_identidad_ejemplo.py,
-                        coteja_preregistro.py + prueba_coteja.py (9 casos)
+                        coteja_preregistro.py + prueba_coteja.py (9 casos), puntua.py (medición sembrada)
 agentes/, skills/       definiciones para Claude Code e INSTALAR.md
 ejemplo_minimo/         el experimento de juguete de punta a punta
 config.toml             rutas, congelados, guardia y fuentes del registro de errores
