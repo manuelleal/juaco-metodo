@@ -1,6 +1,6 @@
-# metodo
+# juaco-metodo
 
-*(nombre provisional)* · [English](README.en.md)
+· [English](README.en.md)
 
 Un **protocolo para dirigir agentes LLM en investigación computacional, con un registro numerado de errores**.
 Reglas escritas, roles fijos, plantillas, unas pocas herramientas que hacen cumplir parte de las reglas, y un

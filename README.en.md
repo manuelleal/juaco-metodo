@@ -1,6 +1,6 @@
-# metodo
+# juaco-metodo
 
-*(provisional name)* · [Español](README.md)
+· [Español](README.md)
 
 A **protocol for directing LLM agents in computational research, with a numbered error registry**. Written rules,
 fixed roles, templates, a few tools that enforce part of the rules, and a registry where every error of the method is

@@ -34,7 +34,7 @@ clasificacion = "registro/clasificacion_errores.json"  # hecha a mano; si no exi
 # Carpetas o archivos que NO se escanean en busca de "ERR-N" (prefijo de ruta relativa). Los textos del método
 # (PROTOCOLO, ROLES, agentes, skills, esquema) citan números de JUACO, no de tu proyecto: van excluidos.
 excluir_escaneo = [".git", ".claude", "datos", "registro/generado", "registro/ESQUEMA_errores.md", "plantillas",
-                   "agentes", "skills", "ejemplo_minimo", "PROTOCOLO.md", "ROLES.md", "README.md", "README.en.md"]
+                   "agentes", "skills", "ejemplo_minimo", "PROTOCOLO.md", "ROLES.md", "README.md", "README.en.md", "MEDICION.md"]
 tam_muestra = 20                                       # muestra al azar para la revisión ciega de la persona responsable
 semilla_muestra = 20260929
 rama = "HEAD"                                          # de dónde sacar fechas por git
