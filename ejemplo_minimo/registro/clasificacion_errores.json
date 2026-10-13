@@ -1,0 +1,14 @@
+{
+ "_nota": "Clasificación a mano de los ERR del ejemplo; la escribe corre.py. Esquema: registro/ESQUEMA_errores.md en la raíz del repositorio.",
+ "1": {
+  "id_permanente": "ERR-001",
+  "tipo": "instrumento",
+  "quien_lo_cometio": "sembrador",
+  "quien_lo_atrapo": "comparador",
+  "tiempo_hasta_detectarlo": "antes_de_la_corrida",
+  "altero_conclusion": "no",
+  "hallazgo_sin_accion": "no",
+  "resumen": "La batería copiada omitió alpha; el candidato habría corrido con el valor por defecto del módulo.",
+  "justificacion_tipo": "Argumento perdido al copiar la batería: falla el instrumento, no el sistema."
+ }
+}

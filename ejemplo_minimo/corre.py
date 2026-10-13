@@ -314,6 +314,9 @@ def escribe_veredicto(v, rs, rr, err, commit_prereg, ruta_s, ruta_r):
         lect.append('Por la letra, P1 no se sostiene en las dos series: el candidato no mejora lo que se predijo.')
     if rs['P2']['pasa'] and rr['P2']['pasa']:
         lect.append('Le gana al control con la misma exploración total: el momento importa, en este entorno.')
+    elif rs['P2']['pasa'] or rr['P2']['pasa']:
+        lect.append('Contra el control con la misma exploración total (CONST) pasa en una serie y cae en la otra: '
+                    'que el momento añada algo sobre la cantidad no está demostrado, y tampoco descartado.')
     else:
         lect.append('No le gana al control con la misma exploración total (CONST): lo que ayuda es explorar más, y '
                     'la sorpresa no añade nada medible sobre esa cantidad.')
@@ -323,8 +326,14 @@ def escribe_veredicto(v, rs, rr, err, commit_prereg, ruta_s, ruta_r):
     lect.append('Es un juguete con el entorno elegido a favor de la pregunta (PREREGISTRO §5): no dice nada de otros '
                 'entornos.')
     L.append(' '.join(lect))
-    L += ['', '## Qué sigue', '',
-          'En tu proyecto: copia la estructura (sellos → anclas → identidad → campo a campo → humo → serie → réplica '
+    L += ['', '## Qué sigue', '']
+    if v.startswith('INCOMPLETO (falta réplica'):
+        L.append('Lo que manda el preregistro (§9): una tercera serie con la misma letra en semillas nuevas (p. ej. '
+                 '141–160), declarada antes en una enmienda; el preregistro está sellado, así que la enmienda la '
+                 'vuelve a sellar una persona. Este ejemplo se detiene aquí a propósito: no se cambia la letra para '
+                 'que el veredicto salga redondo.')
+        L.append('')
+    L += ['En tu proyecto: copia la estructura (sellos → anclas → identidad → campo a campo → humo → serie → réplica '
           '→ veredicto desde el JSON) y sustituye el sistema de juguete por el tuyo. Ver `LEEME.md`.', '']
     with open(os.path.join(AQUI, 'VEREDICTO.md'), 'w', encoding='utf-8', newline='\n') as f:
         f.write('\n'.join(L))

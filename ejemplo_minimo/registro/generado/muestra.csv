@@ -1,0 +1,2 @@
+numero,id_permanente,fecha,tipo,quien_lo_cometio,quien_lo_atrapo,tiempo_hasta_detectarlo,altero_conclusion,hallazgo_sin_accion,resumen,fuente,justificacion_tipo,clasificacion_revisor
+1,ERR-001,2026-10-13,instrumento,sembrador,comparador,antes_de_la_corrida,no,no,La batería copiada omitió alpha; el candidato habría corrido con el valor por defecto del módulo.,VEREDICTO.md:9,"Argumento perdido al copiar la batería: falla el instrumento, no el sistema.",

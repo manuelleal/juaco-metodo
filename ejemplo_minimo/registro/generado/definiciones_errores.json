@@ -1,0 +1,10 @@
+{
+ "1": {
+  "numero": 1,
+  "fuente": "VEREDICTO.md:9",
+  "fecha": "2026-10-13",
+  "origen_fecha": "texto",
+  "texto": "**ERR-001 (2026-10-13):** la batería copiada para el candidato (`bateria_copiada.py`) omitió un argumento que la referencia pasa explícitamente — alpha: referencia 0.1 (batería) · candidato None (defecto del módulo) — y el candidato habría corrido con el valor por defecto de su módulo · causa: instrumento (argumento perdido en la copia; defecto sembrado a propósito para el ejemplo) · lo atrapó: la comparación campo a campo del paso 4, antes de la corrida · veredictos que toca: ninguno; contrafactual en semillas 901–920 (fuera de la serie): con el defecto, P1 habría dado mediana -0.3127 y 2/20 pareado, es decir P1 CAE · corrección: argumentos del candidato = `KWARGS_REFERENCIA` + `PERILLAS` · regla: 12 de `PROTOCOLO.md`.",
+  "apariciones": 1
+ }
+}
