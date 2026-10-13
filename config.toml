@@ -1,0 +1,46 @@
+# config.toml del método. Las rutas son relativas a la carpeta de este archivo (la raíz de tu proyecto).
+# Lo leen herramientas/construye_errores.py y herramientas/guardia.py (Python >= 3.11, tomllib).
+# Con la guardia activa, Claude Code no puede editar este archivo: lo edita una persona.
+
+[proyecto]
+nombre = "mi_proyecto"
+# Primera frase de cada encargo (regla 11 de PROTOCOLO.md). Una línea.
+proposito = "Escribe aquí para qué existe el proyecto; el método manda sobre el cómo."
+prefijo_err = "ERR"
+anio_por_defecto = 2026          # para fechas escritas sin año ("18 sep")
+
+[limites]
+# Regla 3: lo máximo que un agente (no el coordinador) puede correr por su cuenta.
+corridas_por_agente = 6
+pasos_por_corrida = 200000
+
+[congelados]
+# Referencia congelada: "ruta/relativa" = "primeros 16 hex del sha256".
+# El sello se calcula con:  python herramientas/guardia.py --sella ruta/relativa
+# Ejemplo:
+# "sistema/referencia.py" = "0123456789abcdef"
+
+[guardia]
+variable_llave = "METODO_CONGELAR"       # sólo una persona la pone a 1 en el entorno de la sesión
+carpetas_protegidas = ["datos", "experimentos", "registro"]   # sin borrado recursivo
+patron_runner = 'corre_\w*\.py'          # expresión regular de los runners de corridas largas
+bloquear_help_en_runners = true          # ERR-115 de JUACO
+exigir_preregistro_commiteado = true     # regla 4: corre_*.py sin --humo exige PREREGISTRO*.md commiteado en su carpeta
+
+[registro]
+carpeta = "registro"                                   # aquí va errores.csv
+generado = "registro/generado"                         # resumen, definiciones y muestra
+clasificacion = "registro/clasificacion_errores.json"  # hecha a mano; si no existe, se toma vacía
+# Carpetas o archivos que NO se escanean en busca de "ERR-N" (prefijo de ruta relativa). Los textos del método
+# (PROTOCOLO, ROLES, agentes, skills, esquema) citan números de JUACO, no de tu proyecto: van excluidos.
+excluir_escaneo = [".git", ".claude", "datos", "registro/generado", "registro/ESQUEMA_errores.md", "plantillas",
+                   "agentes", "skills", "ejemplo_minimo", "PROTOCOLO.md", "ROLES.md", "README.md", "README.en.md"]
+tam_muestra = 20                                       # muestra al azar para la revisión ciega de la persona responsable
+semilla_muestra = 20260929
+rama = "HEAD"                                          # de dónde sacar fechas por git
+
+[fuentes]
+# Dónde se DEFINE cada ERR (elegido a mano; la primera aparición no siempre es la definición).
+# "1" = { ruta = "registro/BITACORA.md", linea = 41 }
+# "2" = { ruta = "registro/BITACORA.md", linea = 83, token = "palabra de la línea" }   # si la línea no dice ERR-2
+# "3" = { no_usado = true, evidencia = "registro/BITACORA.md:120" }                     # número saltado
