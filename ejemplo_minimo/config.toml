@@ -1,0 +1,25 @@
+# config.toml del ejemplo mínimo: el ejemplo es un "proyecto" aparte, con su propio registro de errores.
+# Rutas relativas a esta carpeta.
+
+[proyecto]
+nombre = "ejemplo_minimo"
+proposito = "Enseñar el protocolo de punta a punta con un sistema de juguete; el método manda sobre el cómo."
+prefijo_err = "ERR"
+anio_por_defecto = 2026
+
+[congelados]
+"referencia.py" = "e6155bea36a2799b"
+"PREREGISTRO.md" = "0e1f2059aaf73a92"
+
+[registro]
+carpeta = "registro"
+generado = "registro/generado"
+clasificacion = "registro/clasificacion_errores.json"
+excluir_escaneo = ["datos", "registro/generado", "LEEME.md"]
+tam_muestra = 20
+semilla_muestra = 20260929
+rama = "HEAD"
+
+[fuentes]
+# corre.py escribe ERR-001 en la línea 9 de VEREDICTO.md y aborta si no queda ahí.
+"1" = { ruta = "VEREDICTO.md", linea = 9 }
