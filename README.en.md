@@ -8,7 +8,7 @@ recorded with who made it, who or what caught it, when, and whether it changed a
 
 The files are written in Spanish; this page is the English entry point.
 
-It comes from the JUACO project (https://github.com/manuelleal/juaco), where a team of Claude Code agents ran hundreds
+It comes from the JUACO project (https://github.com/manuelleal/juaco, DOI 10.5281/zenodo.23041088), where a team of Claude Code agents ran hundreds
 of preregistered experiments in September and October 2026 and used 153 ERR numbers (126 with a written definition;
 the rest were never used). JUACO is the original use case; this repository separates the method from the system that
 was studied there.

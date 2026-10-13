@@ -7,7 +7,7 @@ Reglas escritas, roles fijos, plantillas, unas pocas herramientas que hacen cump
 registro donde cada error del método queda con quién lo cometió, quién o qué lo atrapó, cuándo, y si cambió una
 conclusión.
 
-Sale del proyecto JUACO (https://github.com/manuelleal/juaco), donde un equipo de agentes de Claude Code corrió
+Sale del proyecto JUACO (https://github.com/manuelleal/juaco, DOI 10.5281/zenodo.23041088), donde un equipo de agentes de Claude Code corrió
 durante septiembre y octubre de 2026 cientos de experimentos preregistrados y usó 153 números de ERR (126 con
 definición escrita; los demás quedaron sin usar). JUACO es el caso de
 uso de origen; este repositorio separa el método del sistema que se estudiaba allí.
